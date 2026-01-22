@@ -6,5 +6,4 @@ joblib
 matplotlib
 seaborn
 Werkzeug
-setuptools
-wheel
+gunicorn
