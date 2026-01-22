@@ -1,9 +1,0 @@
-Flask
-scikit-learn
-numpy
-pandas
-joblib
-matplotlib
-seaborn
-Werkzeug
-gunicorn
