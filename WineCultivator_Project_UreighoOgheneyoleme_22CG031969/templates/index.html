@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wine Cultivar Origin Prediction System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🍷 Wine Cultivar Origin Prediction</h1>
+                <p class="subtitle">Predict wine cultivar using chemical properties</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Form Section -->
+            <div class="form-section">
+                <h2>Enter Wine Chemical Properties</h2>
+                <form id="predictionForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="alcohol">Alcohol (%)</label>
+                            <input type="number" id="alcohol" name="alcohol" step="0.01" min="0" max="20" value="12.5" required>
+                            <small class="help-text">Range: 11.03 - 14.83</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="malic_acid">Malic Acid (g/dm³)</label>
+                            <input type="number" id="malic_acid" name="malic_acid" step="0.01" min="0" max="10" value="2.3" required>
+                            <small class="help-text">Range: 0.74 - 5.80</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ash">Ash (g/dm³)</label>
+                            <input type="number" id="ash" name="ash" step="0.01" min="0" max="5" value="2.4" required>
+                            <small class="help-text">Range: 1.36 - 3.23</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="total_phenols">Total Phenols (g/dm³)</label>
+                            <input type="number" id="total_phenols" name="total_phenols" step="0.01" min="0" max="5" value="2.3" required>
+                            <small class="help-text">Range: 0.98 - 3.88</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="flavanoids">Flavanoids (g/dm³)</label>
+                            <input type="number" id="flavanoids" name="flavanoids" step="0.01" min="0" max="6" value="2.0" required>
+                            <small class="help-text">Range: 0.34 - 5.08</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="color_intensity">Color Intensity</label>
+                            <input type="number" id="color_intensity" name="color_intensity" step="0.01" min="0" max="15" value="5.0" required>
+                            <small class="help-text">Range: 1.28 - 13.00</small>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">🔮 Predict Cultivar</button>
+                    <button type="reset" class="btn btn-secondary">↻ Reset Form</button>
+                </form>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" class="results-section hidden">
+                <h2>Prediction Results</h2>
+                
+                <div class="result-card main-result">
+                    <div class="result-label">Predicted Cultivar:</div>
+                    <div id="predictedCultivar" class="cultivar-name"></div>
+                    <div id="confidence" class="confidence-badge"></div>
+                </div>
+
+                <!-- Probabilities -->
+                <div class="probabilities-section">
+                    <h3>Probability Distribution</h3>
+                    <div id="probabilitiesContainer" class="probabilities-grid">
+                        <!-- Filled dynamically -->
+                    </div>
+                </div>
+
+                <!-- Input Summary -->
+                <div class="result-card summary">
+                    <h3>Input Features Summary</h3>
+                    <div id="inputSummary" class="input-summary">
+                        <!-- Filled dynamically -->
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('predictionForm').reset(); document.getElementById('resultsSection').classList.add('hidden');">
+                        ← Make Another Prediction
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="loading-spinner hidden">
+                <div class="spinner"></div>
+                <p>Making prediction...</p>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="error-message hidden"></div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 Wine Cultivar Prediction System | Machine Learning Model: Random Forest Classifier</p>
+            <p>Features: 6 | Algorithm: Random Forest | Model Accuracy: 97.22%</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
